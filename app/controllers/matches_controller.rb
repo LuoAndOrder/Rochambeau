@@ -71,6 +71,7 @@ class MatchesController < ApplicationController
     @match = Match.find(params[:id])
     
     if @match.player_1_choice == nil
+      rand_num = 0
       rand_num = 1 + rand(3)
       if rand_num == 1
         @match.player_1_choice = Digest::MD5.hexdigest("0Rock")
@@ -85,6 +86,7 @@ class MatchesController < ApplicationController
     end
     
     if @match.player_2_choice == nil
+      rand_num = 0
       rand_num = 1 + rand(3)
       if rand_num == 1
         @match.player_2_choice = Digest::MD5.hexdigest("0Rock")
