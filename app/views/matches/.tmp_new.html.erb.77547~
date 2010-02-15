@@ -1,0 +1,20 @@
+<h2>Create a New Match</h2>
+
+<% if logged_in? %>
+
+	<%= error_messages_for :match %>
+	
+	<% form_for :match, @match, :url => { :action => "create" }, :html => { :id => "match_form" } do |f| -%>
+	
+	    <div><%= f.label :match_name, 'Name of This Match <span class="quiet">(3 - 20 chars)</span>:' %></div>
+	    <div class="form_row"><%= f.text_field :match_name %></div>
+	    
+	    <div class="form_row"><%= f.submit "Submit" %></div>
+	    
+	<% end -%>
+
+<% else %>
+
+	You must be logged in to create a match!
+
+<% end %%>

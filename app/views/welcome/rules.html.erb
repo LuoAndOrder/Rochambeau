@@ -1,0 +1,27 @@
+<h2>Rules</h2> 
+
+<h3>Playing the Game</h3>
+
+<p><%= image_tag("screenshot_graph.png") %></p>
+
+<p>The purpose of a game is to <strong>go from the start to the end obtaining as many rubies as possible</strong> on the way. You can move to the next position by <em>clicking the destination circle/ruby</em>.</p>
+
+<ul class="no_bullets">
+  <li><%= image_tag("Yellow.png") %> is worth 1 point.</li>
+  <li><%= image_tag("Green.png") %> is worth 2 points.</li>
+  <li><%= image_tag("Red.png") %> is worth 3 points.</li>
+</ul>
+
+<p><strong>If you go against the arrow</strong>, you will lose the most expensive ruby you currently have.</p>
+
+<p>Once you reach the goal, you can submit your score and will be posted to the ranking.</p>
+
+<h3>Creating Your Own Stage</h3>
+
+<p><%= image_tag("screenshot_create.png") %></p>
+
+<p>When creating your own stage, you can add a ruby on a node by clicking on it <strong>multiple times</strong>. You can also reverse an edge by clicking on it.</p>
+
+<p><strong style="color: #A41B23">Warning</strong>: A stage you create must have a way to go from the start to the end <strong>without taking a reverse edge</strong>.</p>
+
+<p>Be creative!</p>

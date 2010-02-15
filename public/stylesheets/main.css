@@ -1,0 +1,176 @@
+html { font-size:100.01%; }
+body { 
+  font-size: 14px;
+  line-height: 18px;
+  color: #333; 
+  background: #fff;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+a {text-decoration: none;}
+a:link, a:visited {color: #3A60BE; border-bottom: 1px solid #3A60BE;}
+a:hover {color: #000; background-color: #F1F4FF; border-bottom: 1px solid #3A60BE;}
+
+h1,h2,h3,h4,h5,h6 { line-height: 100%;}
+
+p, ul, ol {
+  line-height: 20px;
+  margin-bottom: 18px;
+}
+
+#page_wrap {
+  width: 840px;
+  margin: 0 auto;
+}
+
+#header {
+  margin: 0 0 40px;
+}
+
+#logo {
+  width: 475px;
+  height: 118px;
+  text-indent: -9999px;
+  background:url('../images/RochambeauLogo.png') no-repeat center bottom;
+  display: block;
+  overflow: hidden;
+}
+
+#main_menu {
+  float: left;
+  width: 150px;
+  margin: 0 40px 0 0;
+  list-style-type: none;
+}
+
+  #main_menu #login_form {
+  	width: 150px;
+  }
+
+  #main_menu li {
+    margin: 0;
+  }
+  
+    #main_menu li a {
+      background-color: #eee;
+    }
+      #main_menu li a.first_menu_link {
+        -webkit-border-top-left-radius: 10px;
+        -moz-border-radius-topleft: 10px;
+        -webkit-border-top-right-radius: 10px;
+        -moz-border-radius-topright: 10px;
+      }
+    
+      #main_menu li a.last_menu_link {
+        -webkit-border-bottom-left-radius: 10px;
+        -moz-border-radius-bottomleft: 10px;
+        -webkit-border-bottom-right-radius: 10px;
+        -moz-border-radius-bottomright: 10px;        
+      }
+
+      #main_menu li a:link, #main_menu li a:visited {
+        padding: 0 10px;
+        border: none;
+        display: block;
+        font-size: 14px;
+        line-height: 40px;
+        color: #555;
+      }
+
+      #main_menu li a:hover {
+        background-color: #A41B23;
+        color: #fff;
+      }
+
+#user-bar-greeting a{
+	color: #555;
+}
+
+#user-bar-action a {
+	color: #555;
+}
+
+#canvas {
+  float: left;
+  width: 650px;
+}
+
+  #canvas h2 {
+    font-family: "myriad pro", "calibri", Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+    margin: 0 0 60px;
+  }
+  
+  #canvas h2.no_margin {
+    margin: 0 0 6px;    
+  }
+  
+  #canvas h3 {
+    font-family: "myriad pro", "calibri", Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+    margin: 32px 0 12px;
+  }
+  
+  #canvas h4 {
+    font-weight: bold;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-indent: 1px;
+    color: #999;
+    margin: 0 0 60px;
+  }
+
+  #canvas p, #canvas li {
+    color: #555;
+  }
+  
+  #canvas .no_bullets {
+    list-style-type: none;
+  }
+  
+  
+  #canvas .quiet {
+    color: #999;
+  }
+      
+      
+/* ------ Footer ------ */
+
+/* Sticky footer http://www.cssstickyfooter.com/style.css */
+html, body, #page_wrap{ height:100%; }
+body > #page_wrap {height: auto; min-height: 100%;}
+#main_content {
+  padding-bottom: 130px; /* must be the same as footer height */
+}
+
+#footer {
+  position: relative;
+	margin-top: -130px; /* negative value of footer height */
+	height: 130px;
+	clear:both;
+}
+
+  #footer p {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    color: #999;
+    font-size: 11px;
+    text-align: center;
+  }
+
+/* Clear fix */
+.clearfix:after {content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;}
+.clearfix {display: inline-block;}
+/* Hides from IE-mac \*/
+* html .clearfix { height: 1%;}
+.clearfix {display: block;}
+/* End hide from IE-mac */
+.clear {clear:both;}

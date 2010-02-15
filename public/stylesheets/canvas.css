@@ -1,0 +1,282 @@
+#options_canvas {
+	display: block;
+	float: none;
+}
+
+#options_canvas #invite_link {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #555;
+}
+
+#match_canvas {
+	display: block;
+	width: 650px;
+	float: none;
+	overflow: auto;
+}
+
+#match_canvas #player_canvas {
+	display: block;
+	width: 250px;
+	float: left;
+}
+
+#match_canvas #player_canvas #player_pic {
+	display: block;
+	height: 250px;
+	background:url('../images/questionmark.png') no-repeat center;
+}
+
+#match_canvas #middle_column {
+	display: block;
+	width: 100px;
+	float: left;
+	color: #A41B23;
+}
+
+#match_canvas #middle_column #timer {
+	display: block;
+	height: 50px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 50px;
+	color: #000000;
+}
+
+#match_canvas #opponent_canvas {
+	display: block;
+	width: 250px;
+	float: left;
+}
+
+#match_canvas #opponent_canvas #opponent_pic {
+	display:block;
+	height: 250px;
+	background:url('../images/questionmark.png') no-repeat center;
+}
+
+#match_canvas #announcer {
+	display:block;
+	color: #555;
+	width: 600px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+}
+
+#match_canvas #choices {
+	display:block;
+	width: 600px;
+	list-style-type: none;
+}
+
+#match_canvas #choices li a {
+	background-color: #eee;
+}
+
+#match_canvas #choices li a.first_menu_link {
+	-webkit-border-top-left-radius: 10px;
+    -moz-border-radius-topleft: 10px;
+    -webkit-border-bottom-left-radius: 10px;
+    -moz-border-radius-bottomleft: 10px;
+}
+
+#match_canvas #choices li a.last_menu_link {
+	-webkit-border-top-right-radius: 10px;
+	-mox-border-radius-topright: 10px;
+	-webkit-border-bottom-right-radius: 10px;
+	-moz-border-radius-bottomright: 10px;
+}
+
+  #match_canvas #choices li {
+    border: none;
+    display: block;
+	text-align: center;
+    font-size: 30px;
+    line-height: 40px;
+    color: #555;
+	width: 200px;
+	float: left;
+  }
+
+#match_canvas #choices li:hover {
+	color: #ffffff;
+	background-color: #A41B23;
+	cursor: pointer;
+}
+
+#canvas .matches_list {
+  list-style-type: none;
+}
+
+    #canvas .matches_list li a:link,#canvas .matches_list li a:visited {  
+      display: block;
+      padding-left: 20px;
+      margin-bottom: 20px;
+      font-size: 18px;
+      line-height: 40px;
+      border: 1px solid #bbb;
+      color: #222;
+    }
+
+    #canvas .matches_list li a:hover {
+      background-color: #A41B23;
+      color: #fff;
+    }
+    
+    #canvas .matches_list li .creator_name {
+      color: #999;
+      font-size: 80%;
+    }
+
+#stage_placeholder {
+  margin-bottom: 40px;
+}
+
+  #stage_placeholder td {
+    width: 28px;
+    height: 28px;
+    padding: 2px;
+  }
+  
+  #stage_placeholder .node{
+    background: url("../images/Node.png") center center no-repeat;
+    cursor: pointer;
+  }
+
+    #stage_placeholder .node.yellow{
+      background: url("../images/Yellow.png") center center no-repeat;
+    }
+    #stage_placeholder .node.green{
+      background: url("../images/Green.png") center center no-repeat;
+    }
+    #stage_placeholder .node.red{
+      background: url("../images/Red.png") center center no-repeat;
+    }
+    
+    #stage_placeholder .node.start {
+      background: url("../images/Start.png") center center no-repeat;
+    }
+    #stage_placeholder .node.goal {
+      background: url("../images/Goal.png") center center no-repeat;
+    }
+    
+    #stage_placeholder .node.current {
+      border: 2px solid #A41B23;
+    }
+    
+  
+  #stage_placeholder .h_edge {
+    background: url("../images/EdgeRight.png") center center no-repeat;
+    cursor: pointer;
+  }
+  
+    #stage_placeholder .h_edge.reversed {
+      background: url("../images/EdgeLeft.png") center center no-repeat;
+    }
+    
+  #stage_placeholder .v_edge {
+    background: url("../images/EdgeDown.png") center center no-repeat;
+    cursor: pointer;
+  }
+  
+    #stage_placeholder .v_edge.reversed {
+      background: url("../images/EdgeUp.png") center center no-repeat;
+      cursor: pointer;
+    }
+    
+#stage_status {
+  margin-bottom: 80px;
+}
+
+#current_rubies {
+  width: 300px;
+  min-height: 28px;
+  border: 1px solid #ccc;
+  padding: 2px;
+}
+ 
+  #current_rubies span {
+    width: 28px;
+    height: 28px;
+    display: block;
+    float: left;
+  }
+  
+  #current_rubies .Yellow {
+    background: url("../images/Yellow.png") center center no-repeat;
+  } 
+  #current_rubies .Red {
+    background: url("../images/Red.png") center center no-repeat;
+  } 
+  #current_rubies .Green {
+    background: url("../images/Green.png") center center no-repeat;
+	max-width
+  } 
+  
+.login_error {
+  padding: 10px; margin-bottom: 20px; border: 2px solid #ddd;
+  background: #FBE3E4; color: #8a1f11; border-color: #FBC2C4;
+  font-size: 13px;
+  width: 150px;
+}  
+
+.account_success {
+  padding: 10px; margin-bottom: 20px; border: 2px solid #ddd;
+  background: #E6EFC2; color: #264409; border-color: #C6D880;
+  font-size: 13px;
+  width: 300px;
+}
+
+.account_error {
+  padding: 10px; margin-bottom: 20px; border: 2px solid #ddd;
+  background: #FBE3E4; color: #8a1f11; border-color: #FBC2C4;
+  font-size: 13px;
+  width: 300px;
+}
+  
+.score_error {
+  padding: 10px; margin-bottom: 20px; border: 2px solid #ddd;
+  background: #FBE3E4; color: #8a1f11; border-color: #FBC2C4;
+  font-size: 13px;
+  width: 300px;
+}
+
+.score_success {
+  padding: 10px; margin-bottom: 20px; border: 2px solid #ddd;
+  background: #E6EFC2; color: #264409; border-color: #C6D880;
+  font-size: 13px;
+  width: 300px;
+}
+
+#canvas h2.scores {
+  border-top: 1px solid #999;
+  padding-top: 20px;
+  width: 200px;
+  margin-bottom: 20px;
+  color: #A41B23;
+}
+
+#canvas .scores_list {
+  list-style-type: none;
+  background-color: #FFD8DE;
+  padding: 10px 40px 10px 15px;
+  margin-left: -15px;
+  display: inline-block;
+}
+
+  #canvas .scores_list li {
+    color: #666;
+    display: block;
+    line-height: 40px;
+    font-size: 14px;
+  }
+    #canvas .scores_list li .score {
+      color: #222;
+      font-family: "myriad pro", "calibri", Helvetica, Arial, sans-serif;
+      font-weight: bold;
+      font-size: 24px;
+    }
+    #canvas .scores_list li .player_name {
+      color: #999;
+      font-size: 11px;
+    }
+  

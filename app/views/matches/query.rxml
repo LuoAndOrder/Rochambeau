@@ -1,0 +1,19 @@
+xml.instruct! :xml, :version => "1.0"
+xml.declare! :DOCTYPE, :html, :PUBLIC, "-//W3C//DTD XHTML 1.0 Strict//EN", "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"
+match = @match
+xml.matches{
+  xml.match do
+    xml.id(match.id)
+    xml.match_name(match.match_name)
+    xml.player_1(match.player_1)
+    xml.player_1_choice(match.player_1_choice)
+    xml.player_1_streak(match.player_1_streak)
+    xml.player_1_total(match.player_1_total)
+    xml.player_2(match.player_2)
+    xml.player_2_choice(match.player_2_choice)
+    xml.player_2_streak(match.player_2_streak)
+    xml.player_2_total(match.player_2_total)
+    xml.death(match.death)
+    xml.timer(match.timer)
+  end
+}

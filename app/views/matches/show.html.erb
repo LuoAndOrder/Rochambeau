@@ -1,0 +1,62 @@
+<%= javascript_include_tag "rps" %>
+<%= javascript_include_tag "md5" %>
+
+<% @player1 = User.find(@match.player_1.to_i) %>
+<% @player2 = User.find(@match.player_2.to_i) %>
+
+<% if logged_in? %>
+
+<h2 class="no_margin"><%= @match.match_name %></h2>
+<h4>created by <%= @player1.login %></h4>
+
+<%= error_messages_for :match %>
+
+<div id="match_canvas">
+	<div id="player_canvas">
+		<center>
+			<h3 id="player_header"><%= @player1.login %></h3>
+			<h4 id="player_score">Score: 0</h4>
+		<div id="player_pic">
+			
+		</div>
+		</center>
+	</div>
+	<div id="middle_column">
+		<br \>
+		<center>
+			<h2>-VS-</h2>
+		<div id="timer">
+			3
+		</div>
+		</center>
+	</div>
+	<div id="opponent_canvas">
+		<center>
+			<h3 id="opponent_header"><%= @player2.login %></h3>
+			<h4 id="opponent_score">Score: 0</h4>
+		<div id="opponent_pic">
+			
+		</div>
+		</center>
+	</div>
+	<div id="choices">
+		<ul id="choices_list">
+			<li id="rock_button">Rock</li>
+			<li id="paper_button">Paper</li>
+			<li id="scissor_button">Scissors</li>
+		</ul>
+	</div>
+	<div id="announcer"></div>
+</div>
+
+<div id="options_canvas">
+		<h3 id="invite_link">Invite a friend: <input id="invite_link_box" type="text" readonly="true" \></h3>
+</div>
+
+<% else %>
+	<div>Please log in to play.</div>
+<% end %>
+
+<div id="player_id"><%= User.find(current_user).id %></div>
+<div id="player_name"><%= User.find(current_user).login %></div>
+<div id="match_id"><%= @match.id %></div>

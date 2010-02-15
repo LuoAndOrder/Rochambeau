@@ -1,0 +1,12 @@
+xml.instruct! :xml, :version => "1.0"
+xml.declare! :DOCTYPE, :html, :PUBLIC, "-//W3C//DTD XHTML 1.0 Strict//EN", "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"
+match = @match
+
+  xml.matches{
+    xml.match do
+      xml.id(match.id)
+      xml.player_1_choice(@choice_1)
+      xml.player_2_choice(@choice_2)
+      xml.winner(@winner)
+    end
+  }
