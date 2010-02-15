@@ -13,7 +13,6 @@
 	display: block;
 	width: 650px;
 	float: none;
-	overflow: auto;
 }
 
 #match_canvas #player_canvas {
