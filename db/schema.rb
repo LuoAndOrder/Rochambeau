@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100214215857) do
+ActiveRecord::Schema.define(:version => 20100215204600) do
 
 # Could not dump table "matches" because of following StandardError
 #   Unknown type 'real' for column 'next_time'

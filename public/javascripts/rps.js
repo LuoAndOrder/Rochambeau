@@ -464,7 +464,7 @@ function resetProcess() {
 	tellServerReady(player_id);
 	// If computer is on, tell server computer is ready also:
 	if (computer_box.checked) {
-		tellServerReady(-1);
+		tellServerReady(1);
 	}
 	clearChoices();
 	announcer.innerHTML = "";
@@ -565,10 +565,10 @@ function generateSalt(x) {
 
 function computerBoxHandler() {
 	if (computer_box.checked) {
-		registerWithServer(-1);
+		registerWithServer(1);
 	}
 	else {
-		unregisterWithServer(-1);
+		unregisterWithServer(1);
 	}
 }
 
