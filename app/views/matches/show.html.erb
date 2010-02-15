@@ -2,7 +2,6 @@
 <%= javascript_include_tag "md5" %>
 
 <% @player1 = User.find(@match.player_1.to_i) %>
-<% @player2 = User.find(@match.player_2.to_i) %>
 
 <% if logged_in? %>
 
@@ -32,7 +31,7 @@
 	</div>
 	<div id="opponent_canvas">
 		<center>
-			<h3 id="opponent_header"><%= @player2.login %></h3>
+			<h3 id="opponent_header">Waiting...</h3>
 			<h4 id="opponent_score">Score: 0</h4>
 		<div id="opponent_pic">
 			
