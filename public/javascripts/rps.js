@@ -563,12 +563,20 @@ function generateSalt(x) {
 	return str;
 }
 
-function computerBoxHandler() {
-	if (computer_box.checked) {
-		registerWithServer(1);
+function computerBoxHandler(){
+	var header = document.getElementById("opponent_header").innerHTML
+	if (header == "computer" || header == "Waiting...") {
+		if (computer_box.checked) {
+			registerWithServer(1);
+		}
+		else {
+			unregisterWithServer(1);
+		}
 	}
 	else {
-		unregisterWithServer(1);
+		if (computer_box.checked) {
+			computer_box.checked = false;
+		}
 	}
 }
 
