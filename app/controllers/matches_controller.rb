@@ -76,8 +76,10 @@ class MatchesController < ApplicationController
         @match.player_1_choice = Digest::MD5.hexdigest("0Rock")
       elsif rand_num == 2
         @match.player_1_choice = Digest::MD5.hexdigest("0Paper")
-      else
+      elsif rand_num == 3
         @match.player_1_choice = Digest::MD5.hexdigest("0Scissor")
+      else
+        @match.player_1_choice = Digest::MD5.hexdigest("0Rock")
       end
       Match.update(params[:id], {:player_1_choice => @match.player_1_choice, :player_1_salt => "0"})
     end
