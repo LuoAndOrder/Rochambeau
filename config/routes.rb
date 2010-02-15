@@ -3,7 +3,7 @@ ActionController::Routing::Routes.draw do |map|
 
   # The priority is based upon order of creation: first created -> highest priority.
   map.root :controller => 'welcome', :action => 'index'
-  map.rules 'rules', :controller => 'welcome', :action => 'rules'
+  map.boards 'boards/', :controller => 'boards', :action => 'index'
   map.matches 'matches/', :controller => 'matches', :action => 'index', :conditions => { :method => :get }
   map.new_match 'matches/new', :controller => 'matches', :action => 'new', :conditions => { :method => :get }
   map.connect 'matches', :controller => 'matches', :action => 'create', :conditions => { :method => :post }
@@ -13,7 +13,8 @@ ActionController::Routing::Routes.draw do |map|
   map.ready_to_start 'query/ready_to_start/:id/:salt', :controller => 'matches', :action => 'ready_to_start', :conditions => { :method => :get }
   map.get_opponent 'query/get_opponent/:id/:player_id/:salt', :controller => 'matches', :action => 'get_opponent', :conditions => { :method => :get }
   map.ready_to_play 'query/ready_to_play/:id/:salt', :controller => 'matches', :action => 'ready_to_play', :conditions => { :method => :get }
-  map.get_opponent_choice 'query/ready_to_rumble/:id/:player_id/:salt', :controller => 'matches', :action => 'get_opponent_choice', :conditions => { :method => :get }
+  map.get_player_choice 'query/get_player_choice/:id/:player_id/:salt', :controller => 'matches', :action => 'get_player_choice', :conditions => { :method => :get }
+  map.get_opponent_choice 'query/get_opponent_choice/:id/:player_id/:salt', :controller => 'matches', :action => 'get_opponent_choice', :conditions => { :method => :get }
   map.who_won 'query/who_won/:id/:player_id/:salt', :controller => 'matches', :action => 'who_won', :conditions => { :method => :get }
   map.player_ready 'query/player_ready/:id/:player_id', :controller => 'matches', :action => 'player_ready', :conditions => { :method => :get }
   map.save 'query/save/:id/:player_id/:choice/:salt', :controller => 'matches', :action => 'save', :conditions => { :method => :get }

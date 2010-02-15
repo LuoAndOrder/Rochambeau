@@ -94,6 +94,13 @@ p, ul, ol {
   float: left;
   width: 650px;
 }
+  
+  #canvas h1 {
+  	font-family: "myriad pro", "calibri", Helvetica, Arial, sans-serif;
+	font-weight: bold;
+	font-size: 40px;
+	margin: 0 0 60px;
+  }
 
   #canvas h2 {
     font-family: "myriad pro", "calibri", Helvetica, Arial, sans-serif;

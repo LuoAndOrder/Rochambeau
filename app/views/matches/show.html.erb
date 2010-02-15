@@ -14,7 +14,7 @@
 	<div id="player_canvas">
 		<center>
 			<h3 id="player_header"><%= @player1.login %></h3>
-			<h4 id="player_score">Score: 0</h4>
+			<h4>Score: <div id="player_score">0</div></h4>
 		<div id="player_pic">
 			
 		</div>
@@ -32,7 +32,7 @@
 	<div id="opponent_canvas">
 		<center>
 			<h3 id="opponent_header">Waiting...</h3>
-			<h4 id="opponent_score">Score: 0</h4>
+			<h4>Score: <div id="opponent_score">0</div></h4>
 		<div id="opponent_pic">
 			
 		</div>
@@ -56,6 +56,6 @@
 	<div>Please log in to play.</div>
 <% end %>
 
-<div id="player_id"><%= User.find(current_user).id %></div>
-<div id="player_name"><%= User.find(current_user).login %></div>
-<div id="match_id"><%= @match.id %></div>
+<div id="player_id" style="visibility:hidden;"><%= User.find(current_user).id %></div>
+<div id="player_name" style="visibility:hidden;"><%= User.find(current_user).login %></div>
+<div id="match_id" style="visibility:hidden;"><%= @match.id %></div>

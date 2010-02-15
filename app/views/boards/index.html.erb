@@ -1,0 +1,9 @@
+<center><H2>Longest Streak</H2></center>
+
+<% count = 0 %>
+<% while count < @users.size do %>
+	<% if @users[count].id > 0 %>
+		<h3><%= count+1 %>. <%= @users[count].login %> (streak: <%= @users[count].streak %>)</h3>
+	<% end %>
+	<% count += 1 %>
+<% end %>

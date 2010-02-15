@@ -7,6 +7,7 @@
         <%= stylesheet_link_tag "main" %>
         <%= stylesheet_link_tag "canvas" %>
         <%= stylesheet_link_tag "form" %>
+		<link rel="shortcut icon" href="/favicon.ico" />
         <%= javascript_include_tag :defaults, :cache => true %>
     </head>
     <body>
@@ -20,10 +21,10 @@
                         <%= link_to "Play", matches_path, :class => "first_menu_link" %>
                     </li>
                     <li>
-                        <%= link_to "Rules", rules_path %>
+                        <%= link_to "Create", new_match_path %>
                     </li>
                     <li>
-                        <a href="#" class="last_menu_link">Leaderboards</a>
+                        <%= link_to "Leaderboards", boards_path, :class => "last_menu_link" %>
                     </li>
                     <%= render :partial => 'users/user_bar' %>
                     <% if flash[:notice] %>
@@ -37,7 +38,7 @@
         </div>
         <div id="footer">
             <p>
-                (c) Copyright 2009 Kevin Luo. All Rights Reserved. 
+                (c) Copyright 2010 Kevin Luo. All Rights Reserved. 
             </p>
         </div>
     </body>

@@ -1,6 +1,7 @@
 #options_canvas {
 	display: block;
 	float: none;
+	overflow: auto;
 }
 
 #options_canvas #invite_link {

@@ -14,6 +14,7 @@ var ready_to_rumble;
 var inviteLinkBox
 var announcer
 
+var player_choice
 var opponent_choice
 
 function main(){
@@ -173,11 +174,20 @@ function handleReadyToStart(request) {
 	    paperButton.addEventListener("click", paperClicked, false);
 	    scissorButton.addEventListener("click", scissorClicked, false);		
 	
-		document.getElementById("announcer").innerHTML = "You have 5 seconds to choose your move!";
+		document.getElementById("announcer").innerHTML = "You have <b>5</b> seconds to choose your move!";
+		setTimeout("setAnnounce('You have <b>4</b> seconds to chose your move!')", 1000);
+		setTimeout("setAnnounce('You have <b>3</b> seconds to chose your move!')", 2000);
+		setTimeout("setAnnounce('You have <b>2</b> seconds to chose your move!')", 3000);
+		setTimeout("setAnnounce('You have <b>1</b> seconds to chose your move!')", 4000);
 		
 		setTimeout("readyToPlay()", 5000);
 	}
 	else {
+		if (request.responseText == "left") {
+			document.getElementById("opponent_header").innerHTML = "Waiting...";
+			document.getElementById("player_score").innerHTML = "0";
+			document.getElementById("opponent_score").innerHTML = "0";
+		}
 		setTimeout("readyToStart()", 1500);
 	}
 }
@@ -230,12 +240,13 @@ function handleReadyToPlay(request) {
 }
 
 function readyToRumble() {
-	var url = "../query/ready_to_rumble";
-	url = url + "/" + match_id;
+	var url_p = "../query/get_player_choice";
+	var url_o = "../query/get_opponent_choice";
+	var url = "/" + match_id;
 	url = url + "/" + player_id;
 	url = url + "/" + Math.round(Math.random()*100000+1);
 	
-	new Ajax.Request(url, {
+	new Ajax.Request(url_o + url, {
 		asynchronous: true,
 		evalScripts: true,
 		method: 'get',
@@ -243,6 +254,16 @@ function readyToRumble() {
 			handleReadyToRumble(request)
 		}
 	});
+	
+	new Ajax.Request(url_p + url, {
+		asynchronous: true,
+		evalScripts: true,
+		method: 'get',
+		onComplete: function(request){
+			handleGetPlayerChoice(request)
+		}
+	});
+	
 	return false;
 }
 
@@ -261,6 +282,10 @@ function handleReadyToRumble(request) {
 	setTimeout("startResetProcess()", 5000);
 }
 
+function handleGetPlayerChoice(request) {
+	player_choice = request.responseText;
+}
+
 function startCountDown() {
 	setTimeout("setTimer(\"2\")", 1000);
 	setTimeout("setTimer(\"1\")", 2000);
@@ -274,7 +299,8 @@ function setTimer(str) {
 }
 
 function showHands() {
-	document.getElementById("opponent_pic").style.background = "url('../images/" + opponent_choice + ".png') no-repeat center";
+	document.getElementById("player_pic").style.background = "url('../images/" + player_choice + ".png') no-repeat center";
+	document.getElementById("opponent_pic").style.background = "url('../images/" + opponent_choice + "H.png') no-repeat center";
 }
 
 function determineWinner() {
@@ -295,12 +321,17 @@ function determineWinner() {
 }
 
 function handleDetermineWinner(request) {
-	
 	if (request.responseText == "player") {
 		announcer.innerHTML = "You <b>won</b>!";
+		var player_score = document.getElementById("player_score");
+		var new_score = parseInt(player_score.innerHTML) + 1;
+		player_score.innerHTML = new_score;
 	}
 	else if (request.responseText == "opponent"){
 		announcer.innerHTML = "You <b>lost</b> :(";
+		var opponent_score = document.getElementById("opponent_score");
+		var new_score = parseInt(opponent_score.innerHTML) + 1;
+		opponent_score.innerHTML = new_score;
 	}
 	else {
 		announcer.innerHTML = "It's a <b>draw</b>!";

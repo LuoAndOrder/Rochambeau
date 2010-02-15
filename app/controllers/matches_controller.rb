@@ -49,6 +49,11 @@ class MatchesController < ApplicationController
     @ready_1 = @match.player_1_ready
     @ready_2 = @match.player_2_ready
     
+    if @match.player_2 == 0
+      render :text => "left"
+      return
+    end
+    
     if @ready_1 and @ready_2
       render :text => "yes"
     else
@@ -71,35 +76,56 @@ class MatchesController < ApplicationController
     @match = Match.find(params[:id])
     
     if @match.player_1_choice == nil or @match.player_1_choice == "0"
-      rand_num = 0
       rand_num = 1 + rand(3)
-      puts "RAND NUM: " + rand_num.to_s
+      str = ""
       if rand_num == 1
-        @match.player_1_choice = Digest::MD5.hexdigest("0Rock")
+        str = "0Rock"
       elsif rand_num == 2
-        @match.player_1_choice = Digest::MD5.hexdigest("0Paper")
-      elsif rand_num == 3
-        @match.player_1_choice = Digest::MD5.hexdigest("0Scissor")
+        str = "0Paper"
       else
-        @match.player_1_choice = Digest::MD5.hexdigest("0Rock")
+        str = "0Scissor"
       end
+      @match.player_1_choice = Digest::MD5.hexdigest(str)
       Match.update(params[:id], {:player_1_choice => @match.player_1_choice, :player_1_salt => "0"})
     end
     
     if @match.player_2_choice == nil or @match.player_2_choice == "0"
-      rand_num = 0
       rand_num = 1 + rand(3)
+      str = ""
       if rand_num == 1
-        @match.player_2_choice = Digest::MD5.hexdigest("0Rock")
+        str = "0Rock"
       elsif rand_num == 2
-        @match.player_2_choice = Digest::MD5.hexdigest("0Paper")
+        str = "0Paper"
       else
-        @match.player_2_choice = Digest::MD5.hexdigest("0Scissor")
+        str = "0Scissor"
       end
+      @match.player_2_choice = Digest::MD5.hexdigest(str)
       Match.update(params[:id], {:player_2_choice => @match.player_2_choice, :player_2_salt => "0"})
     end
     
     render :text => "yes"
+  end
+  
+  def get_player_choice
+    @match = Match.find(params[:id])
+    @user = params[:player_id]
+    @choice
+    @salt
+    if @user.to_i == @match.player_1.to_i
+      @choice = @match.player_1_choice
+      @salt = @match.player_1_salt
+    else
+      @choice = @match.player_2_choice
+      @salt = @match.player_2_salt
+    end
+    
+    if @choice == Digest::MD5.hexdigest(@salt + "Rock")
+      render :text => "rock"
+    elsif @choice == Digest::MD5.hexdigest(@salt + "Paper")
+      render :text => "paper"
+    else
+      render :text => "scissors"
+    end
   end
   
   def get_opponent_choice
@@ -153,24 +179,47 @@ class MatchesController < ApplicationController
       @choice_2 = "scissor"
     end
     
-    
+    str = ""
     
     if (@choice_1 == "rock" and @choice_2 == "paper") or (@choice_1 == "scissor" and @choice_2 == "rock") or (@choice_1 == "paper" and @choice_2 == "scissor")
       if @player == 1
-        render :text => "opponent"
+        Match.update(params[:id], {:player_1_streak => 0})
+        str = "opponent"
       else
-        render :text => "player"
+        Match.update_counters(params[:id], :player_2_total => 1, :player_2_streak => 1)
+        User.update_counters(@user.to_s, {:total => 1})
+        str = "player"
       end
     elsif (@choice_1 == "rock" and @choice_2 == "scissor") or (@choice_1 == "scissor" and @choice_2 == "paper") or (@choice_1 == "paper" and @choice_2 == "rock")
       if @player == 1
-        render :text => "player"
+        Match.update_counters(params[:id], {:player_1_total => 1, :player_1_streak => 1})
+        User.update_counters(@user.to_s, {:total => 1})
+        str = "player"
       else
-        render :text => "opponent"
+        Match.update(params[:id], {:player_2_streak => 0})
+        str = "opponent"
       end
     else
-      render :text => "draw"
+      str = "draw"
     end
+    
+    @match = Match.find(params[:id])
+    streak_1 = @match.player_1_streak.to_i
+    streak_2 = @match.player_2_streak.to_i
+    if @player == 1
+      if streak_1.to_i > User.find(@user).streak.to_i
+        User.update(@user.to_s, {:streak => streak_1})
+      end
+    else
+      if streak_2.to_i > User.find(@user).streak.to_i
+        User.update(@user.to_s, {:streak => streak_2})
+      end
+    end    
+    
+    render :text => str
+    
   end
+  
   
   def player_ready
     @match = Match.find(params[:id])
