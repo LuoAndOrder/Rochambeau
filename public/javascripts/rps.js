@@ -199,6 +199,7 @@ function getOpponent() {
 function readyToPlay() {
 	var url = "../query/ready_to_play";
 	url = url + "/" + match_id;
+	url = url + "/" + Math.round(Math.random()*1000000+1);
 	
 	new Ajax.Request(url, {
 		asynchronous: true,

@@ -12,7 +12,7 @@ ActionController::Routing::Routes.draw do |map|
   map.check_death 'query/check_death/:id/:salt', :controller => 'matches', :action => 'check_death', :conditions => { :method => :get }
   map.ready_to_start 'query/ready_to_start/:id/:salt', :controller => 'matches', :action => 'ready_to_start', :conditions => { :method => :get }
   map.get_opponent 'query/get_opponent/:id/:player_id/:salt', :controller => 'matches', :action => 'get_opponent', :conditions => { :method => :get }
-  map.ready_to_play 'query/ready_to_play/:id', :controller => 'matches', :action => 'ready_to_play', :conditions => { :method => :get }
+  map.ready_to_play 'query/ready_to_play/:id/:salt', :controller => 'matches', :action => 'ready_to_play', :conditions => { :method => :get }
   map.get_opponent_choice 'query/ready_to_rumble/:id/:player_id/:salt', :controller => 'matches', :action => 'get_opponent_choice', :conditions => { :method => :get }
   map.who_won 'query/who_won/:id/:player_id/:salt', :controller => 'matches', :action => 'who_won', :conditions => { :method => :get }
   map.player_ready 'query/player_ready/:id/:player_id', :controller => 'matches', :action => 'player_ready', :conditions => { :method => :get }
