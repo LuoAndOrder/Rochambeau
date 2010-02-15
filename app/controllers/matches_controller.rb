@@ -70,7 +70,7 @@ class MatchesController < ApplicationController
     Match.update(params[:id], {:player_1_ready => 0, :player_2_ready => 0})
     @match = Match.find(params[:id])
     
-    if @match.player_1_choice == nil
+    if @match.player_1_choice == nil or @match.player_1_choice == "0"
       rand_num = 0
       rand_num = 1 + rand(3)
       puts "RAND NUM: " + rand_num.to_s
@@ -86,7 +86,7 @@ class MatchesController < ApplicationController
       Match.update(params[:id], {:player_1_choice => @match.player_1_choice, :player_1_salt => "0"})
     end
     
-    if @match.player_2_choice == nil
+    if @match.player_2_choice == nil or @match.player_2_choice == "0"
       rand_num = 0
       rand_num = 1 + rand(3)
       if rand_num == 1
@@ -177,9 +177,9 @@ class MatchesController < ApplicationController
     @user = params[:player_id]
     
     if @user.to_i == @match.player_1.to_i
-      Match.update(params[:id], {:player_1_ready => 1, :player_1_choice => 0, :player_1_salt => 0})
+      Match.update(params[:id], {:player_1_ready => 1, :player_1_choice => "0", :player_1_salt => 0})
     else
-      Match.update(params[:id], {:player_2_ready => 1, :player_2_choice => 0, :player_2_salt => 0})
+      Match.update(params[:id], {:player_2_ready => 1, :player_2_choice => "0", :player_2_salt => 0})
     end
     
     render :text => "OK";
