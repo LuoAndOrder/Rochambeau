@@ -273,13 +273,10 @@ function setTimer(str) {
 }
 
 function showHands() {
-	console.log("opponent choice: "+opponent_choice);
 	document.getElementById("opponent_pic").style.background = "url('../images/" + opponent_choice + ".png') no-repeat center";
 }
 
 function determineWinner() {
-	console.log("Figuring out who winner is...this is tough.");
-	
 	var url = "../query/who_won";
 	url = url + "/" + match_id;
 	url = url + "/" + player_id;
@@ -402,41 +399,6 @@ function generateSalt(x) {
 		i = i + 1;
 	}
 	return str;
-}
-
-function handleGetPlayer(request) {
-	var xmlDoc = request.responseXML.documentElement;
-	player_1 = xmlDoc.getElementsByTagName("player_1")[0].textContent;
-	player_2 = xmlDoc.getElementsByTagName("player_2")[0].textContent;
-	if (user == player_1) {
-		player = 1;
-		opponent = 2;
-	}
-	else if (player_2 == "" || user == player_2) {
-		player = 2;
-		player_2 = user;
-		opponent = 1;
-	}
-	else if (player_2 != ""){
-		player = -1;
-	}
-	else {
-		player = -1;
-	}
-	console.log("response: player: "+player);
-	main();
-}
-
-function GetXmlHttpObject(){
-	if (window.XMLHttpRequest) {
-		// Code for IE7+, Firefox, Chrome, Opera, Safari
-		return new XMLHttpRequest();
-	}
-	if (window.ActiveXObject) {
-		// Code for IE6, IE5 (ewwww)
-		return new ActiveXObject("Microsoft.XMLHTTP");
-	}
-	return null;
 }
 
 function unload() {
