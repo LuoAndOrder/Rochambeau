@@ -1,16 +1,20 @@
 <h2>All Matches</h2>
 
-<% if !@matches.empty? %>
-  <ul class="matches_list">
-  <% @matches.each do |match| %>
-    <li>
-      <% link_to(:controller => "matches", :action => "show",
-                 :id => match.id) do %>
-      	"<%= h match.match_name %>" <span class="creator_name">by <%= h User.find(match.player_1.to_i).login %></span>
-    	<% end %>
-  	</li>
-  <% end%>
-  </ul>
+<% if not logged_in? %>
+	<div>You must be logged in to play!</div>
 <% else %>
-  <p>There are no matches yet.</p>
-<% end%>
+	<% if !@matches.empty? %>
+	  <ul class="matches_list">
+	  <% @matches.each do |match| %>
+	    <li>
+	      <% link_to(:controller => "matches", :action => "show",
+	                 :id => match.id) do %>
+	      	"<%= h match.match_name %>" <span class="creator_name">by <%= h User.find(match.player_1.to_i).login %></span>
+	    	<% end %>
+	  	</li>
+	  <% end%>
+	  </ul>
+	<% else %>
+	  <p>There are no matches yet.</p>
+	<% end%>
+<% end %>
