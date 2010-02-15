@@ -2,15 +2,19 @@ require 'builder'
 require "digest"
 
 class MatchesController < ApplicationController
+  
+  # Displays list of matches
   def index
     @matches = Match.find(:all)
   end
   
+  # Displays form for creating a match
   def new
     @match = Match.new
     @name = "";
   end
   
+  # Show the match (the game screen)
   def show
     @match = Match.find(params[:id])
     if @match.player_2 == nil
@@ -18,6 +22,7 @@ class MatchesController < ApplicationController
     end
   end
   
+  # Function to create the match
   def create
     @match = Match.new(params[:match])
     @user = User.find(current_user).id
@@ -29,12 +34,15 @@ class MatchesController < ApplicationController
     end
   end
   
+  # Returns an XML document of the match entry
+    # currently not used
   def query
     @match = Match.find(params[:id])
     @xml = Builder::XmlMarkup.new
     render :layout => false
   end
   
+  # Returns if the match is flagged for death
   def check_death
     @match = Match.find(params[:id])
     if @match.death
@@ -44,6 +52,7 @@ class MatchesController < ApplicationController
     end
   end
   
+  # Determines if there are two players and if they are both ready
   def ready_to_start
     @match = Match.find(params[:id])
     @ready_1 = @match.player_1_ready
@@ -61,6 +70,7 @@ class MatchesController < ApplicationController
     end
   end
   
+  # Return the opponent's name
   def get_opponent
     @match = Match.find(params[:id])
     @user = params[:player_id]
@@ -71,6 +81,7 @@ class MatchesController < ApplicationController
     end
   end
   
+  # If the player did not make a choice, make a random choice for them
   def ready_to_play
     Match.update(params[:id], {:player_1_ready => 0, :player_2_ready => 0})
     @match = Match.find(params[:id])
@@ -106,6 +117,7 @@ class MatchesController < ApplicationController
     render :text => "yes"
   end
   
+  # Returns the player's choice (mostly useful for if their choice was randomized)
   def get_player_choice
     @match = Match.find(params[:id])
     @user = params[:player_id]
@@ -128,6 +140,7 @@ class MatchesController < ApplicationController
     end
   end
   
+  # Returns the opponent's choice
   def get_opponent_choice
     @match = Match.find(params[:id])
     @user = params[:player_id]
@@ -150,6 +163,8 @@ class MatchesController < ApplicationController
     end
   end
   
+  # Returns the winner relative to the querying client
+  # Updates user total's and streaks
   def who_won
     @match = Match.find(params[:id])
     @user = params[:player_id]
@@ -220,7 +235,7 @@ class MatchesController < ApplicationController
     
   end
   
-  
+  # Flag the player ready and clean the choices
   def player_ready
     @match = Match.find(params[:id])
     @user = params[:player_id]
@@ -234,6 +249,8 @@ class MatchesController < ApplicationController
     render :text => "OK";
   end
   
+  # Register the player with the server
+  # If the match is full, let the client know
   def register
     @match = Match.find(params[:id])
     @user = params[:player_id]
@@ -248,6 +265,7 @@ class MatchesController < ApplicationController
     end
   end
   
+  # Free up a slot and kill the match if the host leaves
   def unregister
     @match = Match.find(params[:id])
     @user = params[:player_id]
@@ -263,17 +281,20 @@ class MatchesController < ApplicationController
     end
   end
   
+  # Kill the match
   def kill
     Match.delete(params[:id]);
     
     render :text => "OK"
   end
   
+  # Flag the match to die
   def setup_kill
     Match.update(params[:id], {:death => 1})
     render :text => "OK"
   end
   
+  # Save the querying player's choice in the server
   def save
     @user = params[:player_id]
     @match = Match.find(params[:id])

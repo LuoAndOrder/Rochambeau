@@ -20,8 +20,8 @@ ActionController::Routing::Routes.draw do |map|
   map.save 'query/save/:id/:player_id/:choice/:salt', :controller => 'matches', :action => 'save', :conditions => { :method => :get }
   map.kill 'query/kill/:id', :controller => 'matches', :action => 'kill', :conditions => { :method => :get }
   map.setup_kill 'query/setup_kill/:id', :controller => 'matches', :action => 'setup_kill', :conditions => { :method => :get }
-  map.register_player 'query/register/:id/:player_id', :controller => 'matches', :action => 'register', :conditions => { :method => :get }
-  map.unregister_player 'query/unregister/:id/:player_id', :controller => 'matches', :action => 'unregister', :conditions => { :method => :get }
+  map.register_player 'query/register/:id/:player_id/:salt', :controller => 'matches', :action => 'register', :conditions => { :method => :get }
+  map.unregister_player 'query/unregister/:id/:player_id/:salt', :controller => 'matches', :action => 'unregister', :conditions => { :method => :get }
   map.new_account 'accounts/new', :controller => 'accounts', :action => 'new', :conditions => { :method => :get }
   map.connect 'accounts', :controller => 'accounts', :action => 'create', :conditions => { :method => :post }
   map.connect 'accounts/login', :controller => 'accounts', :action => 'login', :conditions => { :method => :post }
