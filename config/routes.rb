@@ -16,7 +16,7 @@ ActionController::Routing::Routes.draw do |map|
   map.get_player_choice 'query/get_player_choice/:id/:player_id/:salt', :controller => 'matches', :action => 'get_player_choice', :conditions => { :method => :get }
   map.get_opponent_choice 'query/get_opponent_choice/:id/:player_id/:salt', :controller => 'matches', :action => 'get_opponent_choice', :conditions => { :method => :get }
   map.who_won 'query/who_won/:id/:player_id/:salt', :controller => 'matches', :action => 'who_won', :conditions => { :method => :get }
-  map.player_ready 'query/player_ready/:id/:player_id', :controller => 'matches', :action => 'player_ready', :conditions => { :method => :get }
+  map.player_ready 'query/player_ready/:id/:player_id/:salt', :controller => 'matches', :action => 'player_ready', :conditions => { :method => :get }
   map.save 'query/save/:id/:player_id/:choice/:salt', :controller => 'matches', :action => 'save', :conditions => { :method => :get }
   map.kill 'query/kill/:id', :controller => 'matches', :action => 'kill', :conditions => { :method => :get }
   map.setup_kill 'query/setup_kill/:id', :controller => 'matches', :action => 'setup_kill', :conditions => { :method => :get }

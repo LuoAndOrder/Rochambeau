@@ -269,7 +269,7 @@ class MatchesController < ApplicationController
   def unregister
     @match = Match.find(params[:id])
     @user = params[:player_id]
-    if @user.to_i == @match.player_1.to_i and @match.player_2.to_i == "0".to_i
+    if @user.to_i == @match.player_1.to_i and (@match.player_2.to_i == "0".to_i or @match.player_2.to_i == -1)
       render :text => "kill"
     elsif @user.to_i == @match.player_1.to_i and @match.player_2.to_i != "0".to_i
       render :text => "slow_kill"

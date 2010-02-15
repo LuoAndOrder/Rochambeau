@@ -14,6 +14,7 @@ var announcer
 // Player choices
 var player_choice
 var opponent_choice
+var computer_box
 
 function main(){
 	
@@ -22,13 +23,15 @@ function main(){
 	player_name = document.getElementById("player_name").innerHTML;
 	player_id = document.getElementById("player_id").innerHTML;
 	inviteLinkBox = document.getElementById("invite_link_box");
+	computer_box = document.getElementById("computer_box");
 	announcer = document.getElementById("announcer");
 	
 	// When you join a game, tell the server you're in it.
-	registerWithServer();
+	registerWithServer(player_id);
 	
 	// Populate invite link box
 	inviteLinkBox.value = document.URL;
+	computer_box.addEventListener("click", computerBoxHandler, false);
 	
 	// Check to see if host has left the room
 	checkDeath();
@@ -45,12 +48,12 @@ function main(){
  * If the room is full, kick you out. Otherwise, play.
  * handler - handleRegisterWithServer
  */
-function registerWithServer() {
+function registerWithServer(id) {
 	
 	// Sends a query to "../query/register/:id/:player_id/:salt"
 	var url = "../query/register";
 	url = url + "/" + match_id;
-	url = url + "/" + player_id;
+	url = url + "/" + id;
 	url = url + "/" + Math.round(Math.random()*100000 + 1);
 	new Ajax.Request(url, {
 		asynchronous: true,
@@ -83,10 +86,10 @@ function handleRegisterWithServer(request) {
  * Tells server you left, free up a slot, and close the room if necessary.
  * Handler - handleUnregisterWithServer
  */
-function unregisterWithServer() {
+function unregisterWithServer(id) {
 	var url = "../query/unregister";
 	url = url + "/" + match_id;
-	url = url + "/" + player_id;
+	url = url + "/" + id;
 	url = url + "/" + Math.round(Math.random()*10000000 + 1);
 	new Ajax.Request(url, {
 		asynchronous: false,
@@ -458,7 +461,11 @@ function startResetProcess() {
  */
 function resetProcess() {
 	document.getElementById("timer").innerHTML = 3;
-	tellServerReady();
+	tellServerReady(player_id);
+	// If computer is on, tell server computer is ready also:
+	if (computer_box.checked) {
+		tellServerReady(-1);
+	}
 	clearChoices();
 	announcer.innerHTML = "";
 	gameLoop();
@@ -471,10 +478,11 @@ function setAnnounce(str) {
 /* tellServerReady
  * Tells the server this client is ready to play again
  */
-function tellServerReady() {
+function tellServerReady(id) {
 	var url = "../query/player_ready";
 	url = url + "/" + match_id;
-	url = url + "/" + player_id;
+	url = url + "/" + id;
+	url = url + "/" + Math.round(Math.random()*100000 + 1)
 	
 	new Ajax.Request(url, {
 		asynchronous: true,
@@ -555,11 +563,20 @@ function generateSalt(x) {
 	return str;
 }
 
+function computerBoxHandler() {
+	if (computer_box.checked) {
+		registerWithServer(-1);
+	}
+	else {
+		unregisterWithServer(-1);
+	}
+}
+
 /* unload
  * If you leave the page, tell the server that.
  */
 function unload() {
-	unregisterWithServer();
+	unregisterWithServer(player_id);
 }
 
 window.addEventListener("load", main, false);
