@@ -73,7 +73,7 @@ class MatchesController < ApplicationController
     if @match.player_1_choice == nil
       rand_num = 0
       rand_num = 1 + rand(3)
-      puts "RAND NUM: " + rand_num
+      puts "RAND NUM: " + rand_num.to_s
       if rand_num == 1
         @match.player_1_choice = Digest::MD5.hexdigest("0Rock")
       elsif rand_num == 2
