@@ -148,23 +148,19 @@ class MatchesController < ApplicationController
       @choice_2 = "scissor"
     end
     
-    if (@choice_1 == "rock" and @choice_2 == "paper") or (@choice_1 == "paper" and @choice_2 == "rock")
+    
+    
+    if (@choice_1 == "rock" and @choice_2 == "paper") or (@choice_1 == "scissor" and @choice_2 == "rock") or (@choice_1 == "paper" and @choice_2 == "scissor")
       if @player == 1
         render :text => "opponent"
       else
         render :text => "player"
       end
-    elsif (@choice_1 == "rock" and @choice_2 == "scissor") or (@choice_1 == "scissor" and @choice_2 == "rock")
+    elsif (@choice_1 == "rock" and @choice_2 == "scissor") or (@choice_1 == "scissor" and @choice_2 == "paper") or (@choice_1 == "paper" and @choice_2 == "rock")
       if @player == 1
         render :text => "player"
       else
         render :text => "opponent"
-      end
-    elsif (@choice_1 == "paper" and @choice_2 == "scissor") or (@choice_1 == "scissor" and @choice_2 == "paper")
-      if @player == 1
-        render :text => "opponent"
-      else
-        render :text => "player"
       end
     else
       render :text => "draw"
