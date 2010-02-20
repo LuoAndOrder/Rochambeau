@@ -1,8 +1,0 @@
-
-
-<h2>Welcome to Rochambeau!</h2> 
-<p><strong>Rochambeau</strong> is a simple rock-paper-scissors application.</p>
-
-<h3>Playing the Game</h3>
-<p>First, take a look at <%= link_to "Rules", rules_path %>. Then, go <%= link_to "play a game", matches_path %></p>
-<p>You can also <%= link_to "create a room", new_match_path %> and invite a friend to play!</p>
